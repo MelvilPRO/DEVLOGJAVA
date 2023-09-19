@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		TP2();
+		TP3();
 	}
 	
 	public static void TP1()
@@ -59,7 +59,6 @@ public class Main {
 	
 	public static void TP2()
 	{
-		
 		Scanner clavier = new Scanner(System.in);
 		// Niveau 1 : On demande à l'utilisateur/trice combien d'argent il ou elle a sur son compte en banque, si cette personne a au moins 10000€, on lui dit qu'elle peut ouvrir un livret A
 		System.out.println("Indiquez le nombre d'argent sur votre compte");
@@ -141,7 +140,8 @@ public class Main {
 		System.out.println("Veuillez entrer le nombre de roues");
 		int nombreDeRoues = clavier.nextInt();
 		
-		// Je compte le nombre de lignes de cartes vertes
+		// Je compte le nombre de lignes des cartes vertes
+		// Je rajoute 7 pour chaque ligne entière
 		int comptageLignes = 0;
 		int ligneIndex = 1;
 		while(true)
@@ -166,6 +166,97 @@ public class Main {
 		int pointsWonders = comptageLignes + comptageParpins + comptageCompas + comptageRoues;
         System.out.println("Vous avez un total de " + pointsWonders + " points de cartes vertes");
         
+        // Niveau 8 : Les bougies
+ 		System.out.println("Nombre de bougies:");
+ 		int nombreDeBougies = clavier.nextInt();
+ 		int totalDeBougies = nombreDeBougies;
+ 		while (nombreDeBougies > 2)
+ 		{
+ 			nombreDeBougies = nombreDeBougies/3;
+ 			System.out.println("Reste de bougies: " + nombreDeBougies);
+ 			totalDeBougies += nombreDeBougies;
+ 		}
+        System.out.println("Total de bougies fin: " + totalDeBougies);
         clavier.close();
+	}
+	
+	public static void TP3()
+	{
+		// Niveau 1
+		Scanner clavier = new Scanner(System.in);
+		System.out.println("Veuillez entrer le nombre d'étoiles");
+		int nombreEtoiles1 = clavier.nextInt();
+		for (int i = 0; i < nombreEtoiles1; i++)
+		{
+			System.out.println("*");
+		}
+		
+		// Niveau 2
+		System.out.println("Veuillez entrer le nombre d'étoiles");
+		int nombreEtoiles2 = clavier.nextInt();
+		for (int i = 0; i < nombreEtoiles2; i++)
+		{
+			System.out.print("*");
+			for (int j = 0; j < nombreEtoiles2; j++)
+			{
+				System.out.print("*");
+			}
+			System.out.println("");
+		}
+		
+		// Niveau 3
+		System.out.println("Veuillez entrer le nombre d'étoiles");
+		int nombreEtoiles3 = clavier.nextInt();
+		for (int i = 0; i < nombreEtoiles3; i++)
+		{
+			System.out.print("*");
+			for (int j = 0; j < i; j++)
+			{
+				System.out.print("*");
+			}
+			System.out.println("");
+		}
+		
+		// Niveau 4
+		System.out.println("Veuillez entrer le nombre d'étoiles");
+		int nombreEtoiles4 = clavier.nextInt();
+		for (int i = 1; i <= nombreEtoiles4; i++)
+		{
+			int nombreEtoilesEcrites = i*2;
+			int nombreEspacesEcrites = nombreEtoiles4-i;
+			
+			for (int indexEsp = 0; indexEsp < nombreEspacesEcrites; indexEsp++)
+				System.out.print(" ");
+			for (int indexEt = 0; indexEt < nombreEtoilesEcrites; indexEt++)
+				System.out.print("*");
+			
+			// Il n'y en a pas vraiment beson mais pourrait être utile
+			for (int indexEsp = 0; indexEsp < nombreEspacesEcrites; indexEsp++)
+				System.out.print(" ");
+			
+			System.out.println("");
+		}		
+		
+		// Niveau 5
+		System.out.println("Veuillez entrer le nombre d'étoiles");
+		int nombreEtoiles5 = clavier.nextInt();
+		for (int i = 0; i < nombreEtoiles5; i++)
+		{
+			boolean parite = (i%2 == 0);
+			
+			for (int j = 0; j < nombreEtoiles5; j++)
+			{
+				if (parite)
+					System.out.print("*");
+				else
+					System.out.print(" ");
+				
+				parite = !parite;
+			}
+			
+			System.out.println("");
+		}
+		
+		clavier.close();
 	}
 }
