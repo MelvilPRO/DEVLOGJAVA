@@ -241,11 +241,11 @@ public class Main {
 		System.out.println("Veuillez entrer le nombre d'étoiles");
 		int nombreEtoiles5 = clavier.nextInt();
 		for (int i = 0; i < nombreEtoiles5; i++)
-		{
-			boolean parite = (i%2 == 0);
-			
+		{	
 			for (int j = 0; j < nombreEtoiles5; j++)
 			{
+				boolean parite = ((i%2 == 0) == (j%2 == 0));
+				
 				if (parite)
 					System.out.print("*");
 				else
