@@ -3,6 +3,9 @@ import java.util.Scanner;
 
 public class Tableaux {
 	static Scanner clavier = new Scanner(System.in);
+	static final String obstacles = "+";
+	static final String caseVides = "*";
+	static final String usersCase = "@";
 	
 	public static void main(String[] args)
 	{
@@ -43,7 +46,7 @@ public class Tableaux {
 	
 	public static void Grilles()
 	{
-		String[][] grille = CreationGrille();
+		String[][] grille = CreationGrilleObstacles(3);
 		/* Setup de la grille et notre position */
 		int positionX = 0;
 		int positionY = 0;
@@ -55,25 +58,23 @@ public class Tableaux {
 		boolean premierDeplacement = true;
 		do
 		{
-			/* Création d'une nouvelle grille afin de la réinitialiser */
-			grille = CreationGrille();
 			deplacement = DemanderDeplacement(premierDeplacement);
 			switch (deplacement)
 			{
 			case "Haut":
-				if (positionX > 0)
+				if (positionX > 0 && grille[positionX-1][positionY] != obstacles)
 					positionX -= 1;
 				break;
 			case "Bas":
-				if (positionX < grille.length - 1)
+				if (positionX < grille.length-1 && grille[positionX+1][positionY] != obstacles)
 					positionX += 1;
 				break;
 			case "Gauche":
-				if (positionY > 0)
+				if (positionY > 0 && grille[positionX][positionY-1] != obstacles)
 					positionY -= 1;
 				break;
 			case "Droite":
-				if (positionY < grille[0].length - 1)
+				if (positionY < grille[0].length-1 && grille[positionX][positionY+1] != obstacles)
 					positionY += 1;
 				break;
 			case "Stop":
@@ -85,8 +86,9 @@ public class Tableaux {
 			/* Applique le caractère de déplacement */
 			if (!deplacement.equals("Stop"))
 			{
-				grille[positionX][positionY] = "@";
+				grille[positionX][positionY] = usersCase;
 				AfficherGrille(grille);
+				grille[positionX][positionY] = caseVides;
 				premierDeplacement = false;
 			}
 		} while (!deplacement.equals("Stop"));
@@ -128,7 +130,27 @@ public class Tableaux {
 	
 	public static String[][] CreationGrille()
 	{
-		String[][] grille = {{"*", "*", "*", "*"},{"*", "*", "*", "*"},{"*", "*", "*", "*"}};
+		String[][] grille = {{caseVides, caseVides, caseVides, caseVides},{caseVides, caseVides, caseVides, caseVides},{caseVides, caseVides, caseVides, caseVides}};
+		return grille;
+	}
+	
+	public static String[][] CreationGrilleObstacles(int nombreObstacles)
+	{
+		String[][] grille = {{caseVides, caseVides, caseVides, caseVides},{caseVides, caseVides, caseVides, caseVides},{caseVides, caseVides, caseVides, caseVides}};
+		
+		for (int indexObstacle = 0; indexObstacle < nombreObstacles; indexObstacle++)
+		{
+			int x, y = 0;
+			do 
+			{
+				x = NombreAleatoire(0, grille[0].length-1);
+				y = NombreAleatoire(0, grille.length-1);
+			}
+			while (grille[y][x].equals(obstacles));
+			
+			grille[y][x] = obstacles;
+		}
+		
 		return grille;
 	}
 	
@@ -145,4 +167,10 @@ public class Tableaux {
 			System.out.println("");
 		}
 	}
+	
+	// Utilisation de Chat-GPT, min est inclus et max exclus
+		public static int NombreAleatoire(int min, int max) {
+	        int randomInt = (int) (Math.random() * (max - min + 1)) + min;
+	        return randomInt;
+	    }
 }
