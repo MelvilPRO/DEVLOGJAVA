@@ -56,9 +56,11 @@ public class Tableaux {
 		/* Possibilité de déplacements */
 		String deplacement = "";
 		boolean premierDeplacement = true;
+		boolean nouveauDeplacement = true;
 		do
 		{
 			deplacement = DemanderDeplacement(premierDeplacement);
+			boolean deplacementValide = true;
 			switch (deplacement)
 			{
 			case "Haut":
@@ -78,21 +80,23 @@ public class Tableaux {
 					positionY += 1;
 				break;
 			case "Stop":
+				deplacementValide = false;
+				nouveauDeplacement = false;
 				break;
 			default:
-				System.out.println("Déplacement reçu non enregistré: " + deplacement);
+				System.out.println("Le déplacement saisi: " + deplacement + " n'est pas enregistré");
+				deplacementValide = false;
 			}
 			
 			/* Applique le caractère de déplacement */
-			if (!deplacement.equals("Stop"))
+			if (deplacementValide)
 			{
 				grille[positionX][positionY] = usersCase;
 				AfficherGrille(grille);
 				grille[positionX][positionY] = caseVides;
 				premierDeplacement = false;
 			}
-		} while (!deplacement.equals("Stop"));
-		
+		} while (nouveauDeplacement);
 		System.out.println("Fin des déplacements");
 	}
 
@@ -109,23 +113,10 @@ public class Tableaux {
 		}
 		else
 		{
-			System.out.println("Inserez un autre déplacement");
+			System.out.println("Veuillez inserer un autre déplacement");
 		}
 		
-		String userInput = "";
-		do 
-		{
-			if (userInput != "")
-				System.out.println("Le déplacement saisi: " + userInput + " n'est pas enregistré, veuillez réessayer:");
-			
-			userInput = clavier.next();
-		} while (!(userInput.equals("Haut") 
-			    || userInput.equals("Bas") 
-			    || userInput.equals("Gauche")
-			    || userInput.equals("Droite")
-			    || userInput.equals("Stop")));
-		
-		return userInput;
+		return clavier.next();
 	}
 	
 	public static String[][] CreationGrille()
