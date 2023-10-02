@@ -105,9 +105,38 @@ public class Sudoku {
 		}
 	}
 	
-	public static int[][][][] Resoudre(int[][][][] aGrille) {
+	public static int[][][][] Resoudre(int[][][][] aGrille)
+	{	
+		int securiteInfinie = 0;
+		do {
+			System.out.println("Boucle inf");
+			
+			securiteInfinie++;
+		}
+		while(!Terminer(aGrille) && securiteInfinie < 100);
 		
+		System.out.println("L'algorithme de résolution est terminé!");
 		return aGrille;
+	}
+	
+	public static boolean Terminer(int[][][][] aGrille)
+	{	
+		for (int ligneBlocks = 0; ligneBlocks < aGrille.length; ligneBlocks++)
+		{
+			int[][][] ligneBlock = aGrille[ligneBlocks];
+			for (int colonneBlocks = 0; colonneBlocks < ligneBlock.length; colonneBlocks++)
+			{
+				int[][] colonneBlock = ligneBlock[colonneBlocks];
+				for (int ligneTables = 0; ligneTables < colonneBlock.length; ligneTables++)
+				{
+					int[] ligneTable = colonneBlock[ligneTables];
+					for (int valueIndex = 0; valueIndex < ligneTable.length; valueIndex++)
+						if (ligneTable[valueIndex] == 0)
+							return false;
+				}
+			}
+		}
+		return true;
 	}
 	
 	// Utilisation de Chat-GPT, min est inclus et max exclus
