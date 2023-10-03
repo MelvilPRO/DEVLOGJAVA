@@ -1,6 +1,7 @@
 package defaultFix;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Map;
 
 public class Collections {
 
@@ -8,6 +9,7 @@ public class Collections {
 	{
 		PseudosDiscord();
 		InverseListe();
+		Traduction();
 	}
 
 	public static void PseudosDiscord()
@@ -57,6 +59,18 @@ public class Collections {
 		frenchEnglish.put("Bonjour", "Hello");
 		frenchEnglish.put("Aurevoir", "Goodbye");
 		
-		System.out.println("Voici la traduction de ");
+		/*
+		System.out.println("Voici la traduction de Bonjour en anglais:");
+		System.out.println(frenchEnglish.get("Bonjour"));
+		System.out.println("Voici la traduction de Aurevoir en anglais:");
+		System.out.println(frenchEnglish.get("Aurevoir"));
+		*/
+		
+		/* A la place on parcours chaque valeur - merci ChatGPT */
+		for (Map.Entry<String, String> entry : frenchEnglish.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            System.out.println("Traduction en anglais de: " + key + " -> " + value);
+        }
 	}
 }
