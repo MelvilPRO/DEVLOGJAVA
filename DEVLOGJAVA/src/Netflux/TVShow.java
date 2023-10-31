@@ -3,11 +3,23 @@ package Netflux;
 import java.util.ArrayList;
 
 public class TVShow {
+	private String name;
 	private ArrayList<Episode> reserved;
 	
-	public TVShow(ArrayList<Episode> reserved)
+	public TVShow(String name, ArrayList<Episode> reserved)
 	{
+		this.name = name;
 		this.reserved = reserved;
+	}
+
+	public String GetName()
+	{
+		return name;
+	}
+
+	public void SetName(String name)
+	{
+		this.name = name;
 	}
 
 	public ArrayList<Episode> GetReserved()

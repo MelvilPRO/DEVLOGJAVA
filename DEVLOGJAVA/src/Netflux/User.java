@@ -5,7 +5,6 @@ public class User {
 	private String password;
 	private String mailAdress;
 	private int watchTime;
-	private Content watch;
 	
 	public User(String name, String password, String mailAdress, int watchTime, Content watch)
 	{
@@ -13,7 +12,6 @@ public class User {
 		this.password = password;
 		this.mailAdress = mailAdress;
 		this.watchTime = watchTime;
-		this.watch = watch;
 	}
 
 	public String GetName()
@@ -55,14 +53,10 @@ public class User {
 	{
 		this.watchTime = watchTime;
 	}
-
-	public Content GetWatch()
+	
+	public void Watch(Content content)
 	{
-		return watch;
-	}
-
-	public void SetWatch(Content watch)
-	{
-		this.watch = watch;
+		watchTime++;
+		content.SetViews(content.GetViews() + 1);
 	}
 }
