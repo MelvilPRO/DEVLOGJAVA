@@ -2,7 +2,7 @@ package Netflux;
 
 import java.util.ArrayList;
 
-public class TVShow {
+public class TVShow implements Selectable{
 	private String name;
 	private ArrayList<Episode> reserved;
 	
@@ -30,5 +30,10 @@ public class TVShow {
 	public void SetReserved(ArrayList<Episode> reserved)
 	{
 		this.reserved = reserved;
+	}
+	
+	public void Select(User user)
+	{
+		
 	}
 }
