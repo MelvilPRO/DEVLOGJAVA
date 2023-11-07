@@ -21,6 +21,6 @@ public class Movie extends Content implements Selectable {
 	
 	public void Select(User user)
 	{
-		user.Watch();
+		user.Watch(this);
 	}
 }

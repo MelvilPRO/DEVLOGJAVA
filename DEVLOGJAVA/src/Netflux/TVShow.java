@@ -34,6 +34,6 @@ public class TVShow implements Selectable{
 	
 	public void Select(User user)
 	{
-		
+		user.Watch();
 	}
 }

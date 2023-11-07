@@ -4,7 +4,11 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Content example = new Content("Thomas", Genre.Episode, 60*5, 1000000);
+		Episode example = new Episode("Thomas", Genre.Policer, 60*5, 1000000);
+		
+		User simpleUser = new User("user", "pass", "simple@gmail.com", 10, example);
+		
+		
 	}
 
 }

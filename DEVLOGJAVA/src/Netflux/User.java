@@ -1,10 +1,13 @@
 package Netflux;
 
+import java.util.Hashtable;
+
 public class User {
 	private String name;
 	private String password;
 	private String mailAdress;
 	private int watchTime;
+	private Hashtable<TVShow, Integer> serial;
 	
 	public User(String name, String password, String mailAdress, int watchTime, Content watch)
 	{
@@ -56,7 +59,7 @@ public class User {
 	
 	public void Watch(Content content)
 	{
-		watchTime++;
+		watchTime += content.GetDuration();
 		content.SetViews(content.GetViews() + 1);
 	}
 }
