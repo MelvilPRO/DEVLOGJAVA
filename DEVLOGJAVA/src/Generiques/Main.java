@@ -7,7 +7,9 @@ public class Main {
 	{
 		// Niveau 1 : Faire une méthode générique qui prend en paramètre une ArrayList
 		// Renvoie le dernier élément de cette liste 
-		Niveau1.TestString();
-		Niveau1.TestInt();
+		// Niveau1.TestString();
+		// Niveau1.TestInt();
+		
+		Niveau2.TestString();
 	}
 }
